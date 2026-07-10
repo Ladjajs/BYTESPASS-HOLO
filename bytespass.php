@@ -1,1 +1,68 @@
-<?php eval(gzinflate(base64_decode("xVXdattIFL7XU5yIkFoXljbeXrXbBGdjSOm2NlXosmAok9GxPWQ0I2ZGrtOSd2hpS6G0V70oFPoUeZM8yZ6R/CMlaeiysDvoQpqf833n+84Z/bZfzIogSeDgr+NBOuqnKdBzNPxjCF14hsZefNEwOhpBwQyDkdEOL776uQwh1aXhGATbJ8wiPIAwsU4bNsUE81Iyh1nyS9JXmdEiSzLmWMJ1HmfOxhODOBEGc7ZIwvtBMCkVd0IrcMKVUncieBUADXtmHeadkEtkJozuV5PIZxrCy/fvLt+//s+fD2MVtmm8gfW4ruFm0MZrRz/+Hxl8HquKyHngbd+NvctiIjhb+3qIBars4pviglnopEIivWrLokBMoGNnKOVzXCAnY3SeM5VBdw4sOwkjeEBlEK7sW7nZzPqhso5JOuOhGjhxHK/1WdlenE6hLKhyELpnsLMDfkJUASSwurC6Tmtpad2XR51TL4a+ydlLVCxH5XTFekvY55kwnSk6VPNOeDR8PCCi8aZqw+hq2Tk0ebnoWnRl0V3vWsH8GsPvWuHCq9Y/PKhQnBF5SyBSBQiSTvssens7ux5mi1TKcC443qpVf1oyk1VaNZGaUtUb/Sqn+Br+pK6SaC2ZeFJOp0JN687lWjmhKNzm6IsZGftvKG/w42XISjyJWHR6y0TOl2LdjeExqpJuEEF2F0wGa/gSb9NgN4KDs4JRRml6JeteBCkTZlnPm/mB5VrOGJQ5A11UZX0Plju2dUE3VZXzhJK0nfT48OGTiCCrZe9htYWy3W0l2ubWACPNSld5tObZNMiP9QsJseo2soUEtjAXrKqe1ZZtPkN+ShyvWlJ9w5iK0jroZlDdusmERLS+NW6YliIvmF+rmN4ZProzDsPoBlrryq3B6y4ePmrl3+yLJp183mJSv9Ouoo31c8drxo2JfxjE416Ldz1G7dxYXX566xuLy/LiO/lHlxnYklP36K2Wf+eAkv5wr34Q5AMMjKESG9WOKt+mdGNSxxmW0c3WjhVcDdAv0FCjDZ4cD57WzTrX0tH/bnOoWarLvqrd87yaNdtreXbj73MDnXIjCuepoiGmuk0UF8Jtenh/728=")));
+<?php
+// BYTESPASS SS HOLO - Versão PHP para Proteção de Source
+
+$base = "/storage/emulated/0/Android/data/com.dts.freefiremax/";
+
+function titulo() {
+    system("clear");
+    echo "╔══════════════════════════════════════╗\n";
+    echo "║          BYTESPASS SS HOLO           ║\n";
+    echo "╚══════════════════════════════════════╝\n\n";
+}
+
+// 1. Verificação de Dependências (Silenciosa)
+if (shell_exec("command -v adb") == "") {
+    titulo();
+    echo "Instalando dependências...\n";
+    system("pkg update -y && pkg install android-tools -y");
+}
+
+// 2. Armazenamento
+if (!is_dir(getenv("HOME") . "/storage")) {
+    system("termux-setup-storage");
+}
+
+// 3. Conexão ADB
+if (trim(shell_exec("adb get-state 2>&1")) != "device") {
+    titulo();
+    echo "Aguardando Conexão ADB...\n";
+    echo "Conecte o Wireless Debugging para continuar.\n";
+    while (trim(shell_exec("adb get-state 2>&1")) != "device") {
+        echo ".";
+        sleep(2);
+    }
+}
+
+// 4. Menu Principal
+while (true) {
+    titulo();
+    echo "1) Bypass SS\n";
+    echo "2) Sair\n\n";
+    echo "Escolha uma opção: ";
+    $op = trim(fgets(STDIN));
+
+    if ($op == "1") {
+        titulo();
+        echo "Executando Bypass SS...\n";
+        
+        // Verifica pastas via ADB
+        $check = shell_exec("adb shell \"test -d $base/files && test -d $base/fileslimpa && echo 'OK'\"");
+        
+        if (trim($check) == "OK") {
+            system("adb shell \"mv $base/files $base/temp\"");
+            system("adb shell \"mv $base/fileslimpa $base/files\"");
+            system("adb shell \"mv $base/temp $base/fileslimpa\"");
+            echo "\n✓ Concluído com sucesso!\n";
+        } else {
+            echo "\n✗ Erro: Pastas não encontradas.\n";
+        }
+        echo "\nAperte ENTER para voltar";
+        fgets(STDIN);
+    } 
+    elseif ($op == "2") {
+        system("clear");
+        echo "Script encerrado.\n";
+        exit;
+    }
+}
+?>
