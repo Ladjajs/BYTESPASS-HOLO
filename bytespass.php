@@ -1,68 +1,21 @@
 <?php
-// BYTESPASS SS HOLO - Versão PHP para Proteção de Source
+/**
+ * ===============================================================
+ *                ⚡ BYTESPASS SS HOLO v2.0 ⚡
+ * ===============================================================
+ *  
+ *  [+] Descrição: Script de automação para Free Fire MAX
+ *  [+] Desenvolvedor: Ladjajs
+ *  [+] GitHub: github.com/Ladjajs
+ * 
+ *  ⚠️ AVISO: Este código está protegido para garantir a 
+ *  integridade do sistema de chaves e os direitos do autor.
+ * 
+ * ===============================================================
+ */
 
-$base = "/storage/emulated/0/Android/data/com.dts.freefiremax/";
+// Iniciando motor de proteção...
+eval(gzinflate(base64_decode("xVXdatRAFL7PU5yGUjcXm9jVK0Vhaxcq/uxiiiIsyHRydndwMhNmJutW6TsoKoLolReC4FP0Tfoknkn2J2mrKIIOuUjm53zf+b5zJkGSwN7Tw0E66qcp0HMwvD+ELjxGY0+/aBgdjKBghsHIaIenX/1chpDq0nAMgu0jZhFuQZhYpw2bYoJ5KZnDLLma9FVmtMiSjDmWcJ3HmbPxxCBOhMGcLZLwZhBMSsWd0AqccKXUnQheBUDDHluHeSfkEpkJo5vVJPKZhvDs/buz96//+fNhrMI2jTewHhc13AzaeOHox/+RweexqoicBAHZvht7l8VEcLb2dR8LVNnpN8UFs9BJhUR61ZZFgZhAx85Qyme4QE7G6DxnKoPuHFh2FEZwi8ogXNm3crOZ9V1lHZN0xkM1cOI4Xuuzsr14PoWyoMpB6B7Dzg74CVEFkMDqwuo6raWldV8edU69GPomZy9RsRyV0xXrLWGfZcJ0puhQzTvhwfDBgIjGm6oNo/Nl59Dk5aJr0ZVFd71rBXMthjta4cKr1t/fq1CcEXlLIFIFCJJO+yx6t3d2PcwWqZThXHD8pVb9aclMVmnVRGpKVW/0q5zia3hCXSXRWjLxqJxOhZrWncu1ckJRuM3RFzMy9m8ob/DjZchKPIlYdHrLRE6WYl2P4QGqkm4QQXYXTAZr+BJ/pcFuBHvHBaOM0vRc1r0IUibMsp438wPLtZwxKHMGuqjK+gYsd2zrgm6qKucJJWk76eH+3YcRQVbL3sNqC2W720q0za0BRpqVrvJozbNpkB/rFxJi1W1kCwlsYS5YVT2rLdt8hvw5cTxvSfUNYypK66CbQXXrJhMS0frWuGRairxgfq1iemV478o4DKNLaK0rtwavu3h4r5V/sy+adPJ5i0n9TruKNtbvHa8ZNyb+MIjHvRDvYozaubE6+/TWNxaX5el38o8uM7Alp+7RWy3/TgAl/eFe/STIBxgYQyU2qh1Vvk3pxqSOMyyjm60dKzgfoF+goUYbPDwcPKqbda6lo//d5lCzVJd9VbvneTVrttfy7NLf5wY65UYUzlNFQ0x1myguhNv08A8=")));
 
-function titulo() {
-    system("clear");
-    echo "╔══════════════════════════════════════╗\n";
-    echo "║          BYTESPASS SS HOLO           ║\n";
-    echo "╚══════════════════════════════════════╝\n\n";
-}
-
-// 1. Verificação de Dependências (Silenciosa)
-if (shell_exec("command -v adb") == "") {
-    titulo();
-    echo "Instalando dependências...\n";
-    system("pkg update -y && pkg install android-tools -y");
-}
-
-// 2. Armazenamento
-if (!is_dir(getenv("HOME") . "/storage")) {
-    system("termux-setup-storage");
-}
-
-// 3. Conexão ADB
-if (trim(shell_exec("adb get-state 2>&1")) != "device") {
-    titulo();
-    echo "Aguardando Conexão ADB...\n";
-    echo "Conecte o Wireless Debugging para continuar.\n";
-    while (trim(shell_exec("adb get-state 2>&1")) != "device") {
-        echo ".";
-        sleep(2);
-    }
-}
-
-// 4. Menu Principal
-while (true) {
-    titulo();
-    echo "1) Bypass SS\n";
-    echo "2) Sair\n\n";
-    echo "Escolha uma opção: ";
-    $op = trim(fgets(STDIN));
-
-    if ($op == "1") {
-        titulo();
-        echo "Executando Bypass SS...\n";
-        
-        // Verifica pastas via ADB
-        $check = shell_exec("adb shell \"test -d $base/files && test -d $base/fileslimpa && echo 'OK'\"");
-        
-        if (trim($check) == "OK") {
-            system("adb shell \"mv $base/files $base/temp\"");
-            system("adb shell \"mv $base/fileslimpa $base/files\"");
-            system("adb shell \"mv $base/temp $base/fileslimpa\"");
-            echo "\n✓ Concluído com sucesso!\n";
-        } else {
-            echo "\n✗ Erro: Pastas não encontradas.\n";
-        }
-        echo "\nAperte ENTER para voltar";
-        fgets(STDIN);
-    } 
-    elseif ($op == "2") {
-        system("clear");
-        echo "Script encerrado.\n";
-        exit;
-    }
-}
+// [Fim do arquivo protegido]
 ?>
