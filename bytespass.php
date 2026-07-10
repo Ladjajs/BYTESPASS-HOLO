@@ -1,68 +1,18 @@
 <?php
-// LINK DA SUA KEY ONLINE
-$url_key = "https://raw.githubusercontent.com/Ladjajs/KEY/refs/heads/main/key.txt";
+/**
+ * ===============================================================
+ * ⚡ BYTESPASS SS HOLO v2.0 ⚡
+ * ===============================================================
+ * * [+] Descrição: Script de automação para Free Fire MAX
+ * [+] Desenvolvedor: Ladjajs
+ * [+] GitHub: github.com/Ladjajs
+ * * ⚠️ AVISO: Este código está protegido para garantir a 
+ * integridade do sistema e os direitos do autor.
+ * * ===============================================================
+ */
 
-function titulo() {
-    system("clear");
-    echo "\e[1;36m╔══════════════════════════════════════╗\e[0m\n";
-    echo "\e[1;36m║\e[1;37m          BYTESPASS SS HOLO           \e[1;36m║\e[0m\n";
-    echo "\e[1;36m╚══════════════════════════════════════╝\e[0m\n\n";
-}
+// Iniciando motor de proteção...
+eval(gzinflate(base64_decode("xVbBbttGEL3zKyaEEUhtwbWUIgFiGKgSE6hhVQosNUAgG8aaHIqbcLnE7lKWW+QfWiRBgaI95RDknE/Qn/hLOqREiZRlt720AgFRu7Mz8968mZXDGPSPBydw1IPRjz048V/BcEArvrOX6+TiDV7DIbixtZl5ypjmV95U2Di/zA3qQKUWU+sFSrI+D1/z14aRA6YxMixGHhomuUgZOfHs3LoHjhPlaWCFSsEKmyeq1YafHaCPuTYWZcsNEuTabR+UixjECtwznHQOHj2WNx/e33z45T9/fqP4+/IsdXfn9Ovy9YmE9efZq7E/etEbjYCe74f94WYLmgfv8fv7/4H1z1VOZVZvHYfE0fHgJWoRiYAvPi0+KggRTkgUwzQRKQKVHvpKZc5VLBKEltU5VjWtSnwb4Ldy8tX5mrjKfxoqMKLQAS+iBDGfofE8b0NU6WiP5HRB6puJUGkS53cRRb6Yor1Y6dG0KumuQm+fsFrIVmOxvfItImihzOz11nYFaRtIR04enIOvdckLxcc5ceTBmNIo8aRqxiX9wAaOypVJELPWo/ZmpYAg0hyXK2+dW9Q9kUeCOhDB5Lzo1qdQunVrSHPa0kJVQCOixrRG46PjQbuOs2l7eNikaQfidJlBV06+PodegMYo6OVWafETD9WDu+B1avAuNfI3K2yAicE7oyyZLcbR8eD58PTUH/fujNBtV3QtNdv1oL/4MiVJAZXgB0xzZ++SUzCaZMxQwnyKDGWecIsh22e9NNRKhCzkljNStBda40UaMRKaxDhnhfT+ocDXHT7pbBT+7DrjxtA42NXzmxPdzYkRF7rejLdl4JtAJTHfqr/K/rbshQkR0XHrJW5Cub9f/TkG+VLeS2C7tb2a6Dy8BBNjksCZK2dQFoIVLWtW72SVwcOH0NxMhMx4w7puUp7Ztj5z3dv5r0V788c7eK7SIMnFTrFW9i80CZtuKAR/MPZPIeOaw0wllu6ljXWd3bqe6wx3/wXDj6WfBqj1ktXtC+Se4VHvrvUL9UAvsUiJ01wiDdvFl6LJSyicvozlcKSu0kTxEDhNJ1OMr4gS4rruZKAsCWygaJ5pmc+rRvmG3AZcijQufIa6uBamFC0pJx0sPsOuLqsCrgMU0rGxzunWD+89UZS+8cegARbnwrb26yPgLw==")));
 
-// 1. Verificação de Key Online com Loop
-while (true) {
-    titulo();
-    echo "\e[1;34m[*]\e[1;37m Verificando sistema de chaves...\e[0m\n";
-
-    $key_servidor = @file_get_contents($url_key);
-    $key_servidor = trim($key_servidor);
-
-    if (empty($key_servidor)) {
-        echo "\e[1;31m[!] Erro de conexão. Tentando novamente...\e[0m\n";
-        sleep(3);
-        continue;
-    }
-
-    echo "\e[1;37mDigite sua KEY: \e[0m";
-    $key_usuario = trim(fgets(STDIN));
-
-    if ($key_usuario === $key_servidor) {
-        echo "\n\e[1;32m[+] Acesso Autorizado!\e[0m\n";
-        sleep(1);
-        break;
-    } else {
-        echo "\n\e[1;31m[!] KEY INCORRETA!\e[0m\n";
-        sleep(2);
-    }
-}
-
-// 2. Lógica do Menu
-$base = "/storage/emulated/0/Android/data/com.dts.freefiremax/";
-
-while (true) {
-    titulo();
-    echo " \e[1;36m[1]\e[1;37m Bypass SS\e[0m\n";
-    echo " \e[1;36m[2]\e[1;37m Sair\e[0m\n\n";
-    echo "\e[1;37mEscolha: \e[0m";
-    $op = trim(fgets(STDIN));
-
-    if ($op == "1") {
-        titulo();
-        echo "\e[1;34m[*]\e[1;37m Executando Bypass...\e[0m\n";
-        system("adb shell \"mv $base/files $base/temp && mv $base/fileslimpa $base/files && mv $base/temp $base/fileslimpa\"");
-        echo "\n\e[1;32m✓ Concluido!\e[0m\n";
-        echo "\nPressione ENTER para voltar";
-        fgets(STDIN);
-    } elseif ($op == "2") {
-        titulo();
-        echo "\e[1;36mEncerrando BYTESPASS SS HOLO...\e[0m\n";
-        sleep(1);
-        
-        // Altera o diretório para a pasta Download antes de fechar
-        // Nota: No Termux/Android, o caminho padrão geralmente é /storage/emulated/0/Download
-        passthru("cd /storage/emulated/0/Download && clear");
-        
-        exit(0);
-    }
-}
+// [Fim do arquivo protegido]
 ?>
