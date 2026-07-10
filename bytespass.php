@@ -9,19 +9,17 @@ function titulo() {
     echo "\e[1;36m╚══════════════════════════════════════╝\e[0m\n\n";
 }
 
-// 1. Verificação de Key Online com Loop de Tentativas
+// 1. Verificação de Key Online com Loop
 while (true) {
     titulo();
     echo "\e[1;34m[*]\e[1;37m Verificando sistema de chaves...\e[0m\n";
 
-    // Busca a key e remove qualquer espaço ou quebra de linha invisível
     $key_servidor = @file_get_contents($url_key);
     $key_servidor = trim($key_servidor);
 
     if (empty($key_servidor)) {
-        echo "\e[1;31m[!] Erro ao conectar ao servidor de chaves.\e[0m\n";
-        echo "Verifique sua internet e tente novamente em 5 segundos...\n";
-        sleep(5);
+        echo "\e[1;31m[!] Erro de conexão. Tentando novamente...\e[0m\n";
+        sleep(3);
         continue;
     }
 
@@ -29,13 +27,12 @@ while (true) {
     $key_usuario = trim(fgets(STDIN));
 
     if ($key_usuario === $key_servidor) {
-        echo "\n\e[1;32m[+] Acesso Autorizado! Iniciando...\e[0m\n";
+        echo "\n\e[1;32m[+] Acesso Autorizado!\e[0m\n";
         sleep(1);
-        break; // Sai do loop da key e vai para o menu
+        break;
     } else {
-        echo "\n\e[1;31m[!] KEY INCORRETA! Tente novamente.\e[0m\n";
+        echo "\n\e[1;31m[!] KEY INCORRETA!\e[0m\n";
         sleep(2);
-        // O loop continua e pede a key de novo
     }
 }
 
@@ -57,6 +54,11 @@ while (true) {
         echo "\nPressione ENTER para voltar";
         fgets(STDIN);
     } elseif ($op == "2") {
+        // COMANDO PARA SAIR DA PASTA E LIMPAR O TERMINAL
+        system("clear");
+        echo "\e[1;36mEncerrando BYTESPASS SS HOLO...\e[0m\n";
+        // Voltamos para a home do Termux e limpamos tudo antes de sair
+        passthru("cd ~ && clear");
         exit(0);
     }
 }
