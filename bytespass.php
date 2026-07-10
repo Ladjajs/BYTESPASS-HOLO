@@ -36,7 +36,7 @@ while (true) {
     }
 }
 
-// 2. Lógica do Bypass
+// 2. Lógica do Menu
 $base = "/storage/emulated/0/Android/data/com.dts.freefiremax/";
 
 while (true) {
@@ -54,11 +54,14 @@ while (true) {
         echo "\nPressione ENTER para voltar";
         fgets(STDIN);
     } elseif ($op == "2") {
-        // COMANDO PARA SAIR DA PASTA E LIMPAR O TERMINAL
-        system("clear");
+        titulo();
         echo "\e[1;36mEncerrando BYTESPASS SS HOLO...\e[0m\n";
-        // Voltamos para a home do Termux e limpamos tudo antes de sair
-        passthru("cd ~ && clear");
+        sleep(1);
+        
+        // Altera o diretório para a pasta Download antes de fechar
+        // Nota: No Termux/Android, o caminho padrão geralmente é /storage/emulated/0/Download
+        passthru("cd /storage/emulated/0/Download && clear");
+        
         exit(0);
     }
 }
