@@ -4,7 +4,7 @@
  * ⚡ BYTESPASS SS HOLO v2.0 ⚡
  * ===============================================================
  * * [+] Descrição: Script de automação para Free Fire MAX
- * [+] Desenvolvedor: Ladjajs
+ * [+] Desenvolvedor: BYTES
  * [+] GitHub: github.com/Ladjajs
  * * ⚠️ AVISO: Este código está protegido para garantir a 
  * integridade do sistema e os direitos do autor.
