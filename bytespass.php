@@ -1,21 +1,63 @@
 <?php
-/**
- * ===============================================================
- *                ⚡ BYTESPASS SS HOLO v2.0 ⚡
- * ===============================================================
- *  
- *  [+] Descrição: Script de automação para Free Fire MAX
- *  [+] Desenvolvedor: Ladjajs
- *  [+] GitHub: github.com/Ladjajs
- * 
- *  ⚠️ AVISO: Este código está protegido para garantir a 
- *  integridade do sistema de chaves e os direitos do autor.
- * 
- * ===============================================================
- */
+// LINK DA SUA KEY ONLINE
+$url_key = "https://raw.githubusercontent.com/Ladjajs/KEY/refs/heads/main/key.txt";
 
-// Iniciando motor de proteção...
-eval(gzinflate(base64_decode("xVTBbtNAEL37K6ZWVBIhvG2PVD2kNBJVowQ1LVKFq2prj5MFe9faXYcE6D+AACEhOCAOfACfkD/plzC7qUncCo5g+WDPvpl5M/NmA8agfzg4goMujE67cNQ7g+GALL2gVen84gXOYQ/CibWleciY5i+jsbCT6rIyqBMlLUobJapgfZ4+588NowBMY2bYBHlqWMGFZBQksjMb7gZBVsnECiXBClvlqt2B1wHQY+bGYtEOkxy5Dju73ojJREF4/fHD9ce3//z9FMuwSeMd/H72z056oyfd0QjofTzsD1dHQMA7rp//RwVfY+mJXAUBTXk7gqeoRSYSvvix+K4gRTii6Q5lLiQG9Tx2gyXnGitTBUa44XDnkUz4FE0URT6yi3tqOChITo/7sAYtueZAIkm4Bg5OReScKU1HWpHd8qBF1gtS0VSkSpPIzATz/AJnmJAMSHvwwPQhDmsZxiG8AavhQQr34ljfo78Z12PjxBKIDNpYlHbebkTt1PJa1vRs4xx6WivgRFhJTKxjR6RrEqsCVxOcCdve7vguLqMcCNoABFNxty0PgYA+aUUWLRRVYrUo2tkYrWmPTg4OB52aYgO3sbcHTbYNsrF0dN0+Hg4eDY+PeyfdDegmaIwCiWOeqr+RJO/75zW8W1mlxSty2fAuJkcsPd4NcCeC/uLnmGbtBrg/L7kxQeuSG3Sbzwz58jEyLKqcW0zZFuvKVCuRspRbzmj5o9SaKNOImdA0/Blz0ng5ETlC2+oK68JWGluVud25SUmbdGttdjow4kLfqHhl75lE5RPuO++sLVX+qenu2DfeQaia7bDmcpfPWgLSYGW99Jfcar3XMOraDcZJXxUeSuKxWiV+TcjJcgNTwaF7sP/br77leHq5lDvpu5iCbzbLqF/m5ptQJWxuQvMwF0XJG+h1iPe5jY7D8E55sbz+8h4eKZnklag1cRvyRJN06KJG6A1OesfLhZ6qnFZmDb3e76X1CjA3uN7znUbPvVS3GuD1U599WC5vKCGni2+5SPlaxpV2fQCn+F8=")));
+function titulo() {
+    system("clear");
+    echo "\e[1;36m╔══════════════════════════════════════╗\e[0m\n";
+    echo "\e[1;36m║\e[1;37m          BYTESPASS SS HOLO           \e[1;36m║\e[0m\n";
+    echo "\e[1;36m╚══════════════════════════════════════╝\e[0m\n\n";
+}
 
-// [Fim do arquivo protegido]
+// 1. Verificação de Key Online com Loop de Tentativas
+while (true) {
+    titulo();
+    echo "\e[1;34m[*]\e[1;37m Verificando sistema de chaves...\e[0m\n";
+
+    // Busca a key e remove qualquer espaço ou quebra de linha invisível
+    $key_servidor = @file_get_contents($url_key);
+    $key_servidor = trim($key_servidor);
+
+    if (empty($key_servidor)) {
+        echo "\e[1;31m[!] Erro ao conectar ao servidor de chaves.\e[0m\n";
+        echo "Verifique sua internet e tente novamente em 5 segundos...\n";
+        sleep(5);
+        continue;
+    }
+
+    echo "\e[1;37mDigite sua KEY: \e[0m";
+    $key_usuario = trim(fgets(STDIN));
+
+    if ($key_usuario === $key_servidor) {
+        echo "\n\e[1;32m[+] Acesso Autorizado! Iniciando...\e[0m\n";
+        sleep(1);
+        break; // Sai do loop da key e vai para o menu
+    } else {
+        echo "\n\e[1;31m[!] KEY INCORRETA! Tente novamente.\e[0m\n";
+        sleep(2);
+        // O loop continua e pede a key de novo
+    }
+}
+
+// 2. Lógica do Bypass
+$base = "/storage/emulated/0/Android/data/com.dts.freefiremax/";
+
+while (true) {
+    titulo();
+    echo " \e[1;36m[1]\e[1;37m Bypass SS\e[0m\n";
+    echo " \e[1;36m[2]\e[1;37m Sair\e[0m\n\n";
+    echo "\e[1;37mEscolha: \e[0m";
+    $op = trim(fgets(STDIN));
+
+    if ($op == "1") {
+        titulo();
+        echo "\e[1;34m[*]\e[1;37m Executando Bypass...\e[0m\n";
+        system("adb shell \"mv $base/files $base/temp && mv $base/fileslimpa $base/files && mv $base/temp $base/fileslimpa\"");
+        echo "\n\e[1;32m✓ Concluido!\e[0m\n";
+        echo "\nPressione ENTER para voltar";
+        fgets(STDIN);
+    } elseif ($op == "2") {
+        exit(0);
+    }
+}
 ?>
